@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فیلم‌یاب - جستجو و کشف فیلم‌های جدید</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header">
+    </header>
+
+<main class="main-content container layout-flex">
+    <div class="page-3">
+    <aside class="genre-sidebar">
+        <h2 class="sidebar-title">ژانر ها</h2>
+        <div id="genre-list-container">
+            </div>
+    </aside>
+
+    <section class="results-section">
+        <div class="results-header">
+            <h2 id="current-genre-title"></h2>
+            <div class="sort-options">
+                <span>Sort by: Ranking ↑</span>
+                <span id="total-titles"></span>
+            </div>
+        </div>
+        
+        <div id="movie-list-container" class="movie-list-grid">
+            </div>
+            <div class="page-2">
+        
+       
+    </section>
+    </div>
+     <div id="pagination-controls-genre" class="pagination-container" style="display: none;">
+        </div>
+        </div>
+</main>
+<footer class="main-footer">
+    </footer>
+
+    <script type="module" src="js/utils.js"></script>
+    <script type="module" src="js/api.js"></script>
+    <script type="module" src="js/ui.js"></script>
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/header.js"></script>
+    <script type="module" src="js/genre-results.js"></script>
+</body>
+</html>

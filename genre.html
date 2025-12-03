@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ژانرها | فیلم‌یاب</title>
+    <link rel="stylesheet" href="css/style.css">
+    
+</head>
+<body>
+
+    <header class="main-header"></header>
+
+    <main class="main-content container">
+        
+        <h2 class="page-title">🎬 دسته‌بندی ژانرها</h2>
+
+        <div id="loading-indicator" class="status-message loading-state" style="display: flex;">
+            <div class="spinner"></div>
+            <p>در حال بارگذاری ژانرها...</p>
+        </div>
+
+        <div id="error-message" class="status-message error-state" style="display:none;">
+            </div>
+
+        <section id="genres-container" class="genres-grid" style="display: none;">
+            </section>
+
+    </main>
+    
+    <footer class="main-footer"></footer>
+
+    <script type="module" src="js/utils.js"></script>
+    <script type="module" src="js/api.js"></script>
+    <script type="module" src="js/ui.js"></script>
+    <script type="module" src="js/genre.js"></script>
+    <script type="module" src="js/header.js"></script>
+    <script type="module" src="js/genre-results.js"></script>
+</body>
+</html>

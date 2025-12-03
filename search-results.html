@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نتایج جستجو | فیلم‌یاب</title> 
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header"></header>
+
+    <main class="main-content container">
+        
+        <h2 id="results-title" class="page-title">نتایج جستجو...</h2>
+
+        <div id="loading-indicator" class="status-message loading-state" style="display: flex;">
+            <div class="spinner"></div>
+            <p>در حال بارگذاری نتایج...</p>
+        </div>
+
+        <div id="error-message" class="status-message error-state" style="display:none;">
+            </div>
+        
+        <div id="empty-state-message" class="status-message empty-state" style="display:none;">
+            <h3>نتیجه‌ای یافت نشد!</h3>
+            <p>لطفا عبارت جستجوی دیگری را امتحان کنید.</p>
+        </div>
+        
+        <section id="search-results-container" class="movies-grid grid-container" style="display: none;">
+            </section>
+
+        <div id="pagination-controls-results" class="pagination-container" style="display: none;">
+            </div>
+
+    </main>
+    
+    <footer class="main-footer"></footer>
+
+    <script type="module" src="js/utils.js"></script>
+    <script type="module" src="js/api.js"></script>
+    <script type="module" src="js/ui.js"></script>
+    <script type="module" src="js/header.js"></script> 
+    <script type="module" src="js/search-results.js"></script> 
+    <script type="module" src="js/genre-results.js"></script>
+    
+    </body>
+</html>

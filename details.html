@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جزئیات فیلم | فیلم‌یاب</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header">
+    </header>
+
+    <main class="main-content">
+    
+    <div id="details-container">
+        <div id="loading-indicator" class="status-message loading-state" style="display: flex;">
+            <div class="spinner"></div>
+            <p>در حال بارگذاری جزئیات فیلم...</p>
+        </div>
+
+        <div id="error-message" class="status-message error-state" style="display:none;">
+            </div>
+    </div>
+    
+    <section class="cast-section container">
+        <h2 class="section-title">Cast</h2>
+        <div id="cast-container" class="cast-grid">
+            </div>
+    </section>
+
+</main>
+    
+    <footer class="main-footer">
+    </footer>
+
+    <script type="module" src="js/utils.js"></script>
+    <script type="module" src="js/api.js"></script>
+    <script type="module" src="js/ui.js"></script>
+    <script type="module" src="js/details.js"></script>
+    <script type="module" src="js/header.js"></script>
+    <script type="module" src="js/genre-results.js"></script>
+</body>
+</html>
