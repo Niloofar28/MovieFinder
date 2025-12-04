@@ -9,8 +9,9 @@ body{margin: 0px;}
 .sitelogo{width: 25%; float: left; margin-top: 20px;}
 .info-btn span{color: #888; }
 .movie-card {display: flex; flex-direction: column; background-color: #1a1a1a !important; 
-    border-radius: 8px; overflow: hidden;  text-decoration: none; color: inherit;
-    position: relative; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); transition: transform 0.2s ease-in-out;}
+    border-radius: 12px; overflow: hidden;  text-decoration: none; color: inherit;
+    position: relative; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); text-decoration: none; color: #fff;
+    flex-direction: column; height: 100%; margin-bottom: 5px; display: inline-block; text-decoration: .3s; transition: transform 0.3s ease, box-shadow 0.3s ease;}
 .movie-card img{width: 309px; height: 454px; border: 2px #000 solid; border-radius: 10px;}
 .movie-grid{display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin-right: 20px; margin-left: 20px;}
 .hero-section {background-image: url('../images/film.jpg'); background-size: cover; 
@@ -34,10 +35,7 @@ body{margin: 0px;}
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); max-height: 300px; overflow-y: auto;
     z-index: 100; display: none;}
 .main-content {padding-top: 20px;  padding-bottom: 50px; margin-top: 0;}
-.movie-card {background-color: #1a1a1a; border-radius: 12px; overflow: hidden; 
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-decoration: none; color: #fff; display: flex;
-    flex-direction: column; height: 100%; margin-bottom: 5px; display: inline-block; text-decoration: .3s;}
+
 .movie-card:hover {transform: translateY(-5px); box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6); text-decoration: .3s;}
 .movie-poster {width: 100%; height: auto; object-fit: cover; border-radius: 12px 12px 0 0; 
     border-bottom: 1px solid #333; transition: transform 0.3s ease; text-decoration: .3s;}
@@ -337,3 +335,4 @@ body{margin: 0px;}
     .page-3 .movie-list-grid {grid-template-columns: repeat(1, 1fr); margin-top: 40px;}
     .results-section .movie-card img {width: 367px;}
 }
+
