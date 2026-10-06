@@ -1,0 +1,26 @@
+# Base44 dev environment.
+# This project is a pure static site (plain HTML + CSS + browser ES modules):
+# there is no build step and no backend. nginx serves the working tree directly
+# through bind mounts, so every edit is live on browser refresh — no rebuild.
+services:
+  web:
+    image: nginx:alpine
+    restart: on-failure
+    ports:
+      # The user-facing preview entry point.
+      - "3000:80"
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html:ro
+      - ./details.html:/usr/share/nginx/html/details.html:ro
+      - ./genre.html:/usr/share/nginx/html/genre.html:ro
+      - ./genre-results.html:/usr/share/nginx/html/genre-results.html:ro
+      - ./search-results.html:/usr/share/nginx/html/search-results.html:ro
+      - ./css:/usr/share/nginx/html/css:ro
+      - ./js:/usr/share/nginx/html/js:ro
+      - ./components:/usr/share/nginx/html/components:ro
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1/index.html || exit 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
