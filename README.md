@@ -1,12 +1,87 @@
- با عرض سلام خدمت جناب آقای کیان شلیله 
-یک موردی که در ابتدا لازم به ذکر می دونم وقتی پروژه را شروع کردم به زبان فارسی شروع کردم و در زمان دریافت api ها با این مشکل مواجه شدم که به انگلیسی بودند و بعضی از موارد به فارسی برگردانده نمی شدند در نتیجه در بعضی موارد ناهماهنگی ظاهری برای راست چین بدون حالت کلی سایت ایجاد شده است و به علت این که مقدار از پروژه را پیش برده بودم و همچنین محدودیت زمانی تغییر کل سایت به زبان انگلیسی مقدور نبود.
-نکته قابل ذکر دیگر background-color مشکی را به طور آگاهانه به کل صفحه هات نداده ام زیرا به این صورت ویژگی ها سایت واضح تر دیده می شدند. و بعضی از قسمت ها را به سلیقه خودم تغییرات جزیی دادم. امیدوارم پروژه مورد پسندتون باشد. با سپاس فراوان از وقتی که می گذارید.
-توضیحات پروژه:
-فایل های java script  پروژه را براساس ماژول‌های استاندارد ECMAScript (ES Modules) انجام داده ام تا از تداخل های احتمالی جلوگیری کنم. 
-1-	فایل های header.html  و footer.html  به صورت مجزا گذاشته ام و در فوادر components قرار داده ام که با استفاده از تابع loadCommonComponents  در تمام صفحات قابل دسترس باشند.  
-2-	برای دریافت api از سایت https://www.themoviedb.org/documentation/api استفاده کرده ام. برای مدیریت api ها از Asynchronous Componnents استفاده کردم تا بتوانم از await استفاده کنم که اجازه استفاده غیر هم زمان را بدهد بدون متوقف شدن برنامه. از fetch که به صورت خودکار پارامترها را ز api_key  به هر در خواست اضافه می کند. مدیریت خطا آن را با catch انجام داده ام. 
-3-	از تابع fetchMovieDetails(movieId) استفاده کردم تا مدیریت غیر هم زمان و موازی را برای جزییات هر فیلم امکان پذیر شود. این جزییات مانند بازیگران، کارگردان، خلاصه فیلم و غیره می باشد. که این تابع پاسخ در یک object JSON ترکیب کرده و به افزایش سرعت سایت کمک می کند.
-4-	از Mapping برای ژانرها استفاده کردم.  از تابع setGenreMap() استفاده کرده ام تا فقط یک بار در اول هر صفحه لیست کامل ژانرها را از api بگیرد و در یک object ذخیره می کند. تا تابع getGenreNameById(id) بتواند بدون فراخوانی مجدد apiها شناسه ژانرها راه به نام آن ها تبدیل کند و باعث کندی سایت نشود.
-5-	از تابع  renderPaginationبرای  نمایش ثابت صفحات اول و آخر استفاده کردم
+# Horizon Properties
 
- 
+A marketing site for a fictional prime-residential brokerage: 12 listings, a
+filterable portfolio, property detail pages with an image viewer, an advisor
+team, and working enquiry forms.
+
+## What this is
+
+A static multi-page site — HTML, CSS and native browser ES modules. There is **no
+build step, no bundler, no framework and no backend**. `public/` is the entire
+publishable site; everything above it in the repo is documentation and sandbox
+config.
+
+```
+public/
+  index.html          Home
+  properties.html     Search + filter listing
+  property.html       Detail page (?id=<property-id>)
+  about.html  services.html  team.html  contact.html
+  css/                base (tokens/reset) · layout · components · pages
+  js/
+    data/properties.js   All content: company, services, advisors, listings
+    lib/                 utils · icons · favorites · validate
+    components/          header · footer · property-card · carousel ·
+                         gallery · modal · enquiry · reveal · toast
+    pages/               home · properties · property · services · team · contact
+    main.js              Header, footer and shared behaviour on every page
+  images/             Photography
+  fonts/              Self-hosted Inter + Montserrat (woff2)
+```
+
+## Running it
+
+```bash
+docker compose -f docker-compose.base44.yml up -d --build
+open http://localhost:3000/
+```
+
+nginx serves `public/` straight from the working tree, so edits appear on a plain
+browser refresh — there is no watch process and no `reload_preview` needed unless
+the compose file changes.
+
+## Editing content
+
+Everything user-facing lives in `public/js/data/properties.js`:
+
+- `COMPANY` — name, phone, email, address, social links
+- `PROPERTIES` — the listings (title, location, price, specs, gallery, agent)
+- `AGENTS` — the advisor team, also used for property detail sidebars
+- `SERVICES`, `WHY_US`, `STATS` — homepage and services page copy
+
+Adding a listing to `PROPERTIES` automatically adds it to the homepage carousel
+(if `featured: true`), the listing page, its filters and the "similar properties"
+rail. New advisors in `AGENTS` appear on the team page and in the header of any
+property assigned to them.
+
+## Forms and favourites
+
+There is no server, so:
+
+- Property enquiries, viewing requests and contact messages are validated and
+  stored in `localStorage` under `horizon:enquiries`.
+- Saved properties live in `localStorage` under `horizon:favorites`, surfaced as
+  the header counter and the "Saved only" filter.
+
+To make the forms live, replace the `storage.set` calls in
+`public/js/components/enquiry.js` and `public/js/pages/contact.js` with a POST,
+and swap the `PROPERTIES` import for a fetch.
+
+## Fonts and images
+
+Fonts are self-hosted from `public/fonts/` (no Google Fonts request, which also
+keeps typography working on networks where Google is blocked). Photography is
+stored in `public/images/` rather than hotlinked, so the site renders offline.
+
+## Verifying a change
+
+Open the page and check the browser console — the app logs no errors when
+healthy. Useful checks:
+
+```bash
+curl -s -o /dev/null -w '%{http_code}\n' http://localhost:3000/properties.html
+curl -s -o /dev/null -w '%{http_code}\n' http://localhost:3000/property.html?id=oceanfront-residence
+```
+
+A healthy homepage shows the hero image, a populated "Featured Properties"
+carousel and four advisor cards.

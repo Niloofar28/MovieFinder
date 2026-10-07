@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Properties — Horizon Properties</title>
+  <meta name="description" content="Search and filter Horizon Properties' portfolio of luxury homes, villas, estates and penthouses by location, type, price, bedrooms and bathrooms.">
+  <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header site-header--static" data-header></header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <ol class="breadcrumb">
+          <li><a href="index.html">Home</a></li>
+          <li>Properties</li>
+        </ol>
+        <h1>Find your next address</h1>
+        <p>Twelve private residences across our prime markets. Filter by location, type, price and layout — or tell us what you are looking for.</p>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <form class="filters reveal" data-filters novalidate>
+          <div class="filters__grid">
+            <div class="field">
+              <label for="filter-search">Search</label>
+              <input id="filter-search" name="q" type="search" placeholder="Villa, Austin, penthouse…">
+            </div>
+            <div class="field">
+              <label for="filter-location">Location</label>
+              <select id="filter-location" name="location"><option value="">Any location</option></select>
+            </div>
+            <div class="field">
+              <label for="filter-type">Property type</label>
+              <select id="filter-type" name="type"><option value="">Any type</option></select>
+            </div>
+            <div class="field">
+              <label for="filter-price">Price range</label>
+              <select id="filter-price" name="price"><option value="any">Any price</option></select>
+            </div>
+            <div class="field">
+              <label for="filter-sort">Sort by</label>
+              <select id="filter-sort" name="sort">
+                <option value="featured">Featured first</option>
+                <option value="price-asc">Price: low to high</option>
+                <option value="price-desc">Price: high to low</option>
+                <option value="size-desc">Largest first</option>
+                <option value="newest">Newest built</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="filters__grid filters__grid--secondary">
+            <div class="field">
+              <label for="filter-beds">Bedrooms</label>
+              <select id="filter-beds" name="beds"><option value="">Any</option></select>
+            </div>
+            <div class="field">
+              <label for="filter-baths">Bathrooms</label>
+              <select id="filter-baths" name="baths"><option value="">Any</option></select>
+            </div>
+            <div class="filters__cell">
+              <button class="chip" type="button" data-saved-toggle aria-pressed="false">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.8 5.6a5 5 0 0 0-7.1 0L12 7.3l-1.7-1.7a5 5 0 1 0-7.1 7.1l8.8 8.8 8.8-8.8a5 5 0 0 0 0-7.1z"/></svg>
+                Saved only
+              </button>
+            </div>
+            <div class="filters__cell filters__cell--end">
+              <button class="btn btn--ghost btn--sm" type="button" data-filters-reset>Reset filters</button>
+            </div>
+          </div>
+        </form>
+
+        <p class="listing__toolbar result-count" data-result-count role="status" aria-live="polite"></p>
+
+        <div class="listing__grid" data-listing-grid></div>
+
+        <div class="empty-state" data-empty-state hidden>
+          <h3>No properties match those filters</h3>
+          <p>Try widening the price range or clearing the location — or tell us what you are looking for and we will search off market.</p>
+          <p><a class="btn btn--primary" href="contact.html">Talk to an advisor</a></p>
+        </div>
+
+        <div class="listing__more" data-load-more-wrap hidden>
+          <button class="btn btn--outline" type="button" data-load-more>Load more properties</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" data-footer></footer>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/pages/properties.js"></script>
+</body>
+</html>

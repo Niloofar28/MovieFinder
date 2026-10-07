@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Property — Horizon Properties</title>
+  <meta name="description" content="Full details, gallery, features and advisor contact for this Horizon Properties residence.">
+  <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header site-header--static" data-header></header>
+
+  <main id="main" class="page">
+    <div class="container">
+      <ol class="breadcrumb breadcrumb--dark">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="properties.html">Properties</a></li>
+        <li>Details</li>
+      </ol>
+
+      <div data-gallery class="reveal"></div>
+
+      <div class="detail__head" data-detail-head></div>
+
+      <div class="detail__layout">
+        <div data-detail-main></div>
+        <aside class="detail__sidebar" data-detail-sidebar></aside>
+      </div>
+    </div>
+
+    <section class="section section--ivory">
+      <div class="container">
+        <div class="section-head section-head--split reveal">
+          <div>
+            <p class="eyebrow">You may also like</p>
+            <h2>Similar properties</h2>
+          </div>
+          <a class="btn btn--outline" href="properties.html">View all properties</a>
+        </div>
+        <div data-similar></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="sticky-cta" data-sticky-cta>
+    <button class="btn btn--outline" type="button" data-sticky-contact>Contact advisor</button>
+    <button class="btn btn--primary" type="button" data-sticky-viewing>Schedule a viewing</button>
+  </div>
+
+  <footer class="site-footer" data-footer></footer>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/pages/property.js"></script>
+</body>
+</html>

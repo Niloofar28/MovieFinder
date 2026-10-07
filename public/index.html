@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Horizon Properties — Exceptional Homes &amp; Investments</title>
+  <meta name="description" content="Horizon Properties represents architecturally significant homes and prime-location investments. Browse our curated portfolio of luxury residences.">
+  <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="images/hero-villa.jpg" as="image">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" data-header></header>
+
+  <main id="main">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero__media">
+        <img src="images/hero-villa.jpg" width="1920" height="1150" fetchpriority="high" decoding="async"
+             alt="Modern luxury villa at dusk with floor-to-ceiling glass and a lit infinity pool">
+      </div>
+      <div class="hero__content container">
+        <p class="eyebrow eyebrow--centered hero__eyebrow hero-fade hero-fade--1">Horizon Properties</p>
+        <h1 class="hero-fade hero-fade--2">Discover Exceptional<br>Homes &amp; Investments</h1>
+        <p class="hero-fade hero-fade--2">Premium properties in prime locations. Find your dream home or the perfect investment with confidence.</p>
+        <div class="hero__actions hero-fade hero-fade--3">
+          <a class="btn btn--gold" href="properties.html">Browse properties <span class="btn__arrow">&#8594;</span></a>
+          <a class="btn btn--light" href="contact.html">Speak to an advisor</a>
+        </div>
+      </div>
+      <p class="hero__scroll" aria-hidden="true">Scroll<span></span></p>
+    </section>
+
+    <!-- Who we are -->
+    <section class="section">
+      <div class="container about">
+        <div class="about__copy reveal">
+          <p class="eyebrow">About Us</p>
+          <h2>Who We Are</h2>
+          <p>At Horizon Properties, we connect people with extraordinary homes and smart investments. Integrity, transparency, and client satisfaction are at the heart of everything we do.</p>
+          <p><a class="btn btn--primary" href="about.html">Learn More <span class="btn__arrow">&#8594;</span></a></p>
+        </div>
+        <div class="about__media reveal reveal--delay-1">
+          <figure class="about__figure about__figure--main">
+            <img src="images/about-main.jpg" width="1100" height="1300" loading="lazy" decoding="async"
+                 alt="Contemporary house with a pool terrace at golden hour">
+          </figure>
+          <figure class="about__figure about__figure--side">
+            <img src="images/about-side.jpg" width="760" height="1050" loading="lazy" decoding="async"
+                 alt="Living room with floor-to-ceiling windows overlooking the garden">
+          </figure>
+          <a class="about__button" href="properties.html" aria-label="Browse our portfolio">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured properties -->
+    <section class="section section--ivory">
+      <div class="container section-head section-head--split reveal">
+        <div>
+          <p class="eyebrow">Featured</p>
+          <h2>Featured Properties</h2>
+        </div>
+        <a class="btn btn--outline" href="properties.html">View all properties</a>
+      </div>
+      <div class="carousel" data-featured>
+        <div class="carousel__viewport" data-carousel-viewport>
+          <div class="carousel__track" data-featured-track></div>
+        </div>
+        <div class="container carousel__controls">
+          <div class="carousel__dots" data-carousel-dots></div>
+          <div class="carousel__nav">
+            <button class="carousel__btn" type="button" data-carousel-prev aria-label="Previous properties">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button class="carousel__btn" type="button" data-carousel-next aria-label="Next properties">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 6 6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head section-head--centered reveal">
+          <p class="eyebrow eyebrow--centered">What we do</p>
+          <h2>Services</h2>
+          <p>From first viewing to settlement, every part of the transaction is handled in house.</p>
+        </div>
+        <div class="services__grid" data-services-grid></div>
+      </div>
+    </section>
+
+    <!-- Why choose -->
+    <section class="section section--navy">
+      <div class="container">
+        <div class="section-head section-head--centered reveal">
+          <p class="eyebrow eyebrow--centered">Why Horizon</p>
+          <h2>Why Choose Horizon</h2>
+        </div>
+        <div class="why__grid" data-why-grid></div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head section-head--split reveal">
+          <div>
+            <p class="eyebrow">Our team</p>
+            <h2>Advisors</h2>
+          </div>
+          <a class="btn btn--ghost" href="team.html">Meet the team <span class="btn__arrow">&#8594;</span></a>
+        </div>
+        <div class="team__grid" data-team-grid></div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section--tight">
+      <div class="container">
+        <div class="cta-banner reveal">
+          <span class="cta-banner__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 8-8"/><path d="m17 4 3 3"/><path d="m14 7 3 3"/></svg>
+          </span>
+          <div class="cta-banner__copy">
+            <h2>Ready to Find Your Perfect Property?</h2>
+            <p>Let our experts guide you to the right home or investment.</p>
+          </div>
+          <a class="btn btn--primary" href="contact.html">Get in Touch <span class="btn__arrow">&#8594;</span></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" data-footer></footer>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/pages/home.js"></script>
+</body>
+</html>
