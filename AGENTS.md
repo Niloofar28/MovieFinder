@@ -37,6 +37,13 @@ rebuild, so `reload_preview` is only needed after a compose change.
 - Filtering state on `properties.html` is mirrored into the query string
   (`?location=Austin%2C+Texas&beds=4`), so a filtered view is shareable and the
   back button works.
+- The homepage featured carousel uses two modifiers the other carousels do not:
+  `.carousel--spotlight` — large circular arrows floated over the cards inside a
+  `.carousel__stage` wrapper, hidden below 900px where swiping takes over — and
+  `.card--overlay`, where the photograph fills the card and the caption sits over
+  a scrim. `propertyCardHTML` selects it with `variant: 'overlay'`; every other
+  surface keeps the standard image-over-body card. `initCarousel` takes
+  `loop: true` so the spotlight arrows never disable.
 
 ## Content lives in one module
 `js/data/properties.js` holds `COMPANY`, `PROPERTIES`, `AGENTS`, `SERVICES`,

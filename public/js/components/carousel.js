@@ -12,7 +12,7 @@ const arrow = (dir) =>
     dir === 'prev' ? 'm15 18-6-6 6-6' : 'm9 6 6 6-6 6'
   }"/></svg>`;
 
-export function initCarousel(root, { label = 'Properties' } = {}) {
+export function initCarousel(root, { label = 'Properties', loop = false } = {}) {
   if (!root) return null;
 
   const viewport = qs('[data-carousel-viewport]', root);
@@ -53,16 +53,21 @@ export function initCarousel(root, { label = 'Properties' } = {}) {
 
   const sync = () => {
     const max = viewport.scrollWidth - viewport.clientWidth - 2;
-    if (prev) prev.disabled = viewport.scrollLeft <= 2;
-    if (next) next.disabled = viewport.scrollLeft >= max;
+    if (prev) prev.disabled = !loop && viewport.scrollLeft <= 2;
+    if (next) next.disabled = !loop && viewport.scrollLeft >= max;
     const index = Math.max(0, Math.min(items.length - 1, activeIndex()));
     dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === index)));
   };
 
-  prev?.addEventListener('click', () => scrollToIndex(Math.max(0, activeIndex() - 1)));
-  next?.addEventListener('click', () =>
-    scrollToIndex(Math.min(items.length - 1, activeIndex() + 1))
-  );
+  /* Move one card, wrapping at the ends when the carousel loops. */
+  const stepBy = (delta) => {
+    const next = activeIndex() + delta;
+    if (loop) return scrollToIndex((next + items.length) % items.length);
+    scrollToIndex(Math.min(items.length - 1, Math.max(0, next)));
+  };
+
+  prev?.addEventListener('click', () => stepBy(-1));
+  next?.addEventListener('click', () => stepBy(1));
 
   viewport.addEventListener('scroll', debounce(sync, 90), { passive: true });
   window.addEventListener('resize', debounce(sync, 150));
@@ -71,11 +76,11 @@ export function initCarousel(root, { label = 'Properties' } = {}) {
   viewport.addEventListener('keydown', (event) => {
     if (event.key === 'ArrowRight') {
       event.preventDefault();
-      scrollToIndex(Math.min(items.length - 1, activeIndex() + 1));
+      stepBy(1);
     }
     if (event.key === 'ArrowLeft') {
       event.preventDefault();
-      scrollToIndex(Math.max(0, activeIndex() - 1));
+      stepBy(-1);
     }
   });
 

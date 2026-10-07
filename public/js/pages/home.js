@@ -13,11 +13,14 @@ const track = qs('[data-featured-track]');
 if (track) {
   track.innerHTML = featured
     .map(
-      (property) =>
-        `<div class="carousel__item" data-carousel-item>${propertyCardHTML(property)}</div>`
+      (property, index) =>
+        `<div class="carousel__item" data-carousel-item>${propertyCardHTML(property, {
+          variant: 'overlay',
+          eager: index < 2
+        })}</div>`
     )
     .join('');
-  initCarousel(qs('[data-featured]'), { label: 'Featured properties' });
+  initCarousel(qs('[data-featured]'), { label: 'Featured properties', loop: true });
 }
 
 /* --- Services ----------------------------------------------------------- */

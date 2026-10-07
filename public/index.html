@@ -64,28 +64,28 @@
 
     <!-- Featured properties -->
     <section class="section section--ivory">
-      <div class="container section-head section-head--split reveal">
-        <div>
-          <p class="eyebrow">Featured</p>
-          <h2>Featured Properties</h2>
-        </div>
-        <a class="btn btn--outline" href="properties.html">View all properties</a>
+      <div class="container section-head section-head--centered reveal">
+        <p class="eyebrow eyebrow--centered">Featured</p>
+        <h2>Featured Properties</h2>
       </div>
-      <div class="carousel" data-featured>
-        <div class="carousel__viewport" data-carousel-viewport>
-          <div class="carousel__track" data-featured-track></div>
+      <div class="carousel carousel--spotlight" data-featured>
+        <div class="carousel__stage">
+          <div class="carousel__viewport" data-carousel-viewport>
+            <div class="carousel__track" data-featured-track></div>
+          </div>
+          <button class="carousel__btn carousel__btn--floating carousel__btn--prev" type="button" data-carousel-prev aria-label="Previous properties">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <button class="carousel__btn carousel__btn--floating carousel__btn--next" type="button" data-carousel-next aria-label="Next properties">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 6 6 6-6 6"/></svg>
+          </button>
         </div>
         <div class="container carousel__controls">
           <div class="carousel__dots" data-carousel-dots></div>
-          <div class="carousel__nav">
-            <button class="carousel__btn" type="button" data-carousel-prev aria-label="Previous properties">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m15 18-6-6 6-6"/></svg>
-            </button>
-            <button class="carousel__btn" type="button" data-carousel-next aria-label="Next properties">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 6 6 6-6 6"/></svg>
-            </button>
-          </div>
         </div>
+      </div>
+      <div class="container listing__more reveal">
+        <a class="btn btn--outline" href="properties.html">View all properties <span class="btn__arrow">&#8594;</span></a>
       </div>
     </section>
 
