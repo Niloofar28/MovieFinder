@@ -61,9 +61,9 @@ export function initCarousel(root, { label = 'Properties', loop = false } = {}) 
 
   /* Move one card, wrapping at the ends when the carousel loops. */
   const stepBy = (delta) => {
-    const next = activeIndex() + delta;
-    if (loop) return scrollToIndex((next + items.length) % items.length);
-    scrollToIndex(Math.min(items.length - 1, Math.max(0, next)));
+    const target = activeIndex() + delta;
+    if (loop) return scrollToIndex((target + items.length) % items.length);
+    scrollToIndex(Math.min(items.length - 1, Math.max(0, target)));
   };
 
   prev?.addEventListener('click', () => stepBy(-1));
