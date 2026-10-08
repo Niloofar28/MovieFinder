@@ -4,41 +4,63 @@
 
 /* --- Hero --------------------------------------------------------------- */
 .hero {
+  /* The scroll track. Everything beyond the sticky viewport's own height is the
+     distance the visitor scrubs the footage across, so this value is the length
+     of the experience — shorten it for a brisker hero. */
   position: relative;
-  min-height: min(94vh, 900px);
+  height: 300vh;
+  background: var(--navy-900);
+}
+.hero__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: var(--navy-900);
-  padding: calc(var(--header-h) + var(--s-8)) 0 var(--s-10);
 }
 .hero__media {
   position: absolute;
   inset: 0;
 }
-.hero__media img {
+.hero__media img,
+.hero__video {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+/* The still is both the preload placeholder and the fallback: it holds the frame
+   until a video frame has actually decoded, so the hero is never a blank box. */
+.hero__media img {
   transform: scale(1.03);
   animation: hero-settle 2.4s var(--ease) forwards;
 }
+.hero__video {
+  opacity: 0;
+  transition: opacity 0.7s var(--ease);
+}
+.hero.is-video-ready .hero__video { opacity: 1; }
+.hero.is-video-failed .hero__video { display: none; }
 @keyframes hero-settle {
   to { transform: scale(1); }
 }
+/* Deliberately light. The footage stays the dominant element; this is only
+   enough separation for the header and the headline. */
 .hero__media::after {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
-      180deg,
-      rgba(6, 19, 35, 0.72) 0%,
-      rgba(6, 19, 35, 0.42) 38%,
-      rgba(6, 19, 35, 0.58) 72%,
-      rgba(6, 19, 35, 0.86) 100%
-    ),
-    radial-gradient(90% 70% at 50% 30%, rgba(6, 19, 35, 0.1), rgba(6, 19, 35, 0.5));
+    180deg,
+    rgba(6, 19, 35, 0.58) 0%,
+    rgba(6, 19, 35, 0.16) 24%,
+    rgba(6, 19, 35, 0.16) 68%,
+    rgba(6, 19, 35, 0.5) 100%
+  );
 }
 
 .hero__content {
@@ -47,7 +69,14 @@
   max-width: 880px;
   text-align: center;
   color: rgba(255, 255, 255, 0.88);
+  /* Drifts away as the scrub starts. `--hero-progress` is written by the render
+     loop, never by the scroll handler. */
+  opacity: clamp(0, calc(1 - var(--hero-progress, 0) * 3.4), 1);
+  transform: translateY(calc(var(--hero-progress, 0) * -36px));
+  text-shadow: 0 1px 26px rgba(6, 19, 35, 0.45);
 }
+/* Fully faded past this point, so the links stop being focusable behind it. */
+.hero.is-hero-faded .hero__content { visibility: hidden; }
 .hero__content h1 {
   color: var(--white);
   font-size: var(--fs-hero);
@@ -77,7 +106,7 @@
   left: 50%;
   bottom: var(--s-6);
   transform: translateX(-50%);
-  z-index: 1;
+  z-index: 2;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -86,11 +115,43 @@
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.6);
+  /* Held back until the footage can actually respond, so the cue never invites
+     a scroll that would do nothing. */
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
 }
+.hero.is-video-ready .hero__scroll { opacity: 1; }
 .hero__scroll span {
   width: 1px;
   height: 40px;
   background: linear-gradient(rgba(255, 255, 255, 0.5), transparent);
+}
+
+/* Load state — a hairline that sweeps while the first frame decodes. Shown only
+   once the module has taken over, so it never appears without JavaScript. */
+.hero__loader {
+  position: absolute;
+  left: 50%;
+  bottom: var(--s-6);
+  transform: translateX(-50%);
+  z-index: 2;
+  width: 128px;
+  height: 1px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.16);
+  opacity: 0;
+  transition: opacity 0.45s var(--ease);
+}
+.hero.is-hero-loading .hero__loader { opacity: 1; }
+.hero__loader span {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--gold-soft), transparent);
+  animation: hero-sweep 1.5s linear infinite;
+}
+@keyframes hero-sweep {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
 }
 
 /* Entrance — headline, then copy, then actions. */
@@ -107,12 +168,28 @@
 }
 
 @media (max-width: 767px) {
-  .hero { min-height: 88vh; text-align: left; }
+  .hero { text-align: left; }
   .hero__content { text-align: left; }
   .hero__content p { margin-inline: 0; }
   .hero__eyebrow { justify-content: flex-start; }
   .hero__actions { justify-content: flex-start; }
   .hero__scroll { display: none; }
+}
+
+/* Reduced motion: no scroll-driven footage. The track collapses to a single
+   static viewport holding the first frame, and the page moves on normally. */
+@media (prefers-reduced-motion: reduce) {
+  .hero { height: auto; }
+  .hero__sticky {
+    position: relative;
+    height: auto;
+    min-height: min(94vh, 900px);
+    padding: calc(var(--header-h) + var(--s-8)) 0 var(--s-10);
+  }
+  .hero__media img { animation: none; }
+  .hero__content { opacity: 1; transform: none; }
+  .hero__loader { display: none; }
+  .hero__scroll { opacity: 1; }
 }
 
 /* --- Who we are --------------------------------------------------------- */

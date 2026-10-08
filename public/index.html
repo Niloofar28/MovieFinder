@@ -19,22 +19,31 @@
 
   <main id="main">
 
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero__media">
-        <img src="images/hero-villa.jpg" width="1920" height="1150" fetchpriority="high" decoding="async"
-             alt="Modern luxury villa at dusk with floor-to-ceiling glass and a lit infinity pool">
-      </div>
-      <div class="hero__content container">
-        <p class="eyebrow eyebrow--centered hero__eyebrow hero-fade hero-fade--1">Horizon Properties</p>
-        <h1 class="hero-fade hero-fade--2">Discover Exceptional<br>Homes &amp; Investments</h1>
-        <p class="hero-fade hero-fade--2">Premium properties in prime locations. Find your dream home or the perfect investment with confidence.</p>
-        <div class="hero__actions hero-fade hero-fade--3">
-          <a class="btn btn--gold" href="properties.html">Browse properties <span class="btn__arrow">&#8594;</span></a>
-          <a class="btn btn--light" href="contact.html">Speak to an advisor</a>
+    <!-- Hero — scroll-scrubbed footage. `.hero` is a tall scroll track; the
+         viewport inside it is pinned, and scroll position drives the video's
+         timeline (see js/components/hero-video.js). -->
+    <section class="hero" data-hero>
+      <div class="hero__sticky" data-hero-sticky>
+        <div class="hero__media">
+          <img src="images/hero-villa.jpg" width="1920" height="1150" fetchpriority="high" decoding="async"
+               alt="Modern luxury villa at dusk with floor-to-ceiling glass and a lit infinity pool">
+          <video class="hero__video" data-hero-video
+                 data-src="videos/hero-scrub.mp4"
+                 data-mobile-src="videos/hero-scrub-mobile.mp4"
+                 muted playsinline preload="auto" aria-hidden="true"></video>
         </div>
+        <div class="hero__content container">
+          <p class="eyebrow eyebrow--centered hero__eyebrow hero-fade hero-fade--1">Horizon Properties</p>
+          <h1 class="hero-fade hero-fade--2">Discover Exceptional<br>Homes &amp; Investments</h1>
+          <p class="hero-fade hero-fade--2">Premium properties in prime locations. Find your dream home or the perfect investment with confidence.</p>
+          <div class="hero__actions hero-fade hero-fade--3">
+            <a class="btn btn--gold" href="properties.html">Browse properties <span class="btn__arrow">&#8594;</span></a>
+            <a class="btn btn--light" href="contact.html">Speak to an advisor</a>
+          </div>
+        </div>
+        <p class="hero__scroll" aria-hidden="true">Scroll<span></span></p>
+        <div class="hero__loader" aria-hidden="true"><span></span></div>
       </div>
-      <p class="hero__scroll" aria-hidden="true">Scroll<span></span></p>
     </section>
 
     <!-- Who we are -->

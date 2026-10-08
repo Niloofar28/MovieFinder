@@ -44,6 +44,23 @@ rebuild, so `reload_preview` is only needed after a compose change.
   a scrim. `propertyCardHTML` selects it with `variant: 'overlay'`; every other
   surface keeps the standard image-over-body card. `initCarousel` takes
   `loop: true` so the spotlight arrows never disable.
+- The homepage hero is **scroll-scrubbed footage, not a background video**.
+  `video.play()` is never called and the element has neither `autoplay` nor
+  `loop`: `js/components/hero-video.js` maps scroll progress through the hero
+  track straight onto `video.currentTime`. `.hero` is a 300vh scroll track,
+  `.hero__sticky` is the pinned `100svh` viewport inside it, and the scroll
+  handler only records a target progress — one rAF loop eases it and writes. To
+  make the sequence longer or shorter, change `.hero`'s height, not the JS.
+- `public/videos/hero-*.mp4` are **re-encodes, not the supplied original**. The
+  original had a single keyframe for nine seconds, so any scrub decoded the whole
+  file. Any replacement must stay short-GOP (`-g 5`), `-movflags +faststart`,
+  `-an`, and at native resolution — the full list is in the `hero-video.js`
+  header comment. Scrubbing is only as smooth as the encoding allows.
+- The hero keeps the still (`images/hero-villa.jpg`) in the markup as both
+  preload placeholder and fallback, and the video swaps in over it only once a
+  frame has decoded, so a slow or failed load never leaves a blank hero. The
+  video is also skipped entirely under `prefers-reduced-motion`, which collapses
+  the track back to a single static viewport.
 
 ## Content lives in one module
 `js/data/properties.js` holds `COMPANY`, `PROPERTIES`, `AGENTS`, `SERVICES`,

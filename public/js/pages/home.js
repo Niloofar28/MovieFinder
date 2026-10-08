@@ -2,11 +2,15 @@
 import { PROPERTIES, SERVICES, WHY_US, AGENTS } from '../data/properties.js';
 import { propertyCardHTML } from '../components/property-card.js';
 import { initCarousel } from '../components/carousel.js';
+import { initHeroVideo } from '../components/hero-video.js';
 import { initReveal } from '../components/reveal.js';
 import { icons } from '../lib/icons.js';
 import { escapeHtml, qs } from '../lib/utils.js';
 
 const featured = PROPERTIES.filter((property) => property.featured);
+
+/* --- Hero footage ------------------------------------------------------- */
+initHeroVideo(qs('[data-hero]'));
 
 /* --- Featured properties carousel --------------------------------------- */
 const track = qs('[data-featured-track]');

@@ -37,6 +37,15 @@
 }
 .site-header--static { position: sticky; }
 
+/* While the hero's scroll track is pinned, the header stays transparent over the
+   footage however far down that track the visitor has scrubbed. */
+.is-hero-pinned .site-header.is-solid {
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom-color: transparent;
+  box-shadow: none;
+}
+
 /* Brand ------------------------------------------------------------------ */
 .brand {
   display: inline-flex;
