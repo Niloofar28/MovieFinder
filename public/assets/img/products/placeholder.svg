@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img" aria-label="Product image placeholder">
+  <rect width="400" height="400" fill="#f8eaf2"/>
+  <g fill="none" stroke="#a65bb5" stroke-width="4" stroke-linecap="round">
+    <rect x="152" y="120" width="96" height="170" rx="14"/>
+    <path d="M176 120v-18h48v18"/>
+    <path d="M186 210h28"/>
+    <path d="M186 232h28"/>
+  </g>
+  <text x="200" y="340" font-family="Inter, Helvetica, Arial, sans-serif" font-size="18" fill="#813b91" text-anchor="middle">Image coming soon</text>
+</svg>

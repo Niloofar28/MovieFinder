@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop All Beauty &amp; Skincare — Aurora Skincare</title>
+<meta name="description" content="Filter and sort the full Aurora Skincare catalog by category, brand, price and rating — serums, creams, makeup, fragrance, body care and tools.">
+<meta name="theme-color" content="#f8eaf2">
+<meta property="og:site_name" content="Aurora Skincare">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/css/theme.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body data-page="shop">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="container">
+      <div id="shop-breadcrumbs"></div>
+      <h1 id="shop-heading" style="font-size:var(--step-4)">Shop all products</h1>
+      <p id="shop-description">Browse every Aurora Skincare product — filter by category, brand, price and rating.</p>
+      <form id="shop-search-form" role="search" style="display:flex;gap:.5rem;max-width:520px;margin-top:1rem">
+        <label class="sr-only" for="shop-search">Search products</label>
+        <input class="input" id="shop-search" type="search" placeholder="Search serums, lipsticks, brands…" autocomplete="off">
+        <button class="btn" type="submit">Search</button>
+        <button class="btn btn--ghost" type="button" id="search-clear" hidden>Clear</button>
+      </form>
+    </div>
+  </section>
+
+  <div class="container section" id="shop-results" style="padding-top:1.5rem">
+    <div class="shop-layout">
+      <aside class="filters filters--desktop" data-filters-mount aria-label="Product filters"></aside>
+
+      <div>
+        <div class="toolbar">
+          <p class="toolbar__count" id="toolbar-count" role="status"></p>
+          <div class="toolbar__controls">
+            <button class="btn btn--ghost btn--sm mobile-filter-btn" type="button" id="open-filters">
+              Filters
+            </button>
+            <label class="sr-only" for="sort-select">Sort products</label>
+            <select class="select" id="sort-select" style="max-width:220px">
+              <option value="featured">Sort: Featured</option>
+              <option value="price-asc">Price: low to high</option>
+              <option value="price-desc">Price: high to low</option>
+              <option value="newest">Newest</option>
+              <option value="rating">Customer rating</option>
+              <option value="name">Alphabetical</option>
+            </select>
+            <div class="view-toggle" role="group" aria-label="Result layout">
+              <button type="button" data-view="grid" aria-pressed="true" aria-label="Grid view">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                  <rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/>
+                  <rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>
+                </svg>
+              </button>
+              <button type="button" data-view="list" aria-pressed="false" aria-label="List view">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                  <path d="M4 7h16M4 12h16M4 17h16"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="active-filters" id="active-filters"></div>
+        <div class="product-grid product-grid--four" id="product-grid"></div>
+        <nav class="pagination" id="pagination" aria-label="Product pagination"></nav>
+      </div>
+    </div>
+
+    <section class="section" id="recently-viewed-section" hidden>
+      <div class="section-head"><h2>Recently Viewed</h2></div>
+      <div class="product-grid product-grid--four" id="recently-viewed-grid"></div>
+    </section>
+  </div>
+
+  <div class="mobile-nav" id="filter-panel" aria-hidden="true" aria-label="Product filters">
+    <div class="mobile-nav__head">
+      <h2 style="font-size:var(--step-2);margin:0">Filters</h2>
+      <button type="button" class="icon-btn" data-close-filters aria-label="Close filters">Close</button>
+    </div>
+    <div data-filters-mount></div>
+  </div>
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script type="module" src="/assets/js/pages/shop.js"></script>
+</body>
+</html>

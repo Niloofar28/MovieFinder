@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found — Aurora Skincare</title>
+<meta name="description" content="That page could not be found. Browse the Aurora Skincare shop instead.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f8eaf2">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/css/theme.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+</head>
+<body data-page="not-found">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+  <div class="container section" style="max-width:620px;text-align:center">
+    <p class="hero__eyebrow" style="justify-content:center">Error 404</p>
+    <h1 style="font-size:var(--step-4)">We could not find that page</h1>
+    <p class="muted">The link may be old, or the product may have moved. Everything else is still in place.</p>
+    <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-top:1rem">
+      <a class="btn" href="/shop">Shop all products</a>
+      <a class="btn btn--ghost" href="/">Back to home</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script type="module">
+  import { mountShell } from '/assets/js/ui.js';
+  await mountShell('/404');
+</script>
+</body>
+</html>

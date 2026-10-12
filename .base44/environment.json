@@ -1,0 +1,18 @@
+{
+  "previewPort": 3000,
+  "healthPath": "/api/health",
+  "startCommand": "docker compose -f docker-compose.base44.yml up -d",
+  "secrets": [
+    {
+      "name": "SESSION_SECRET",
+      "description": "Signing key for the store's session cookie. A development value is generated automatically; replace it with a long random string before any real deployment.",
+      "requiredAtBoot": true,
+      "generatedForDevelopment": true
+    },
+    {
+      "name": "ADMIN_PASSWORD",
+      "description": "Password for the bootstrap administrator account (ADMIN_EMAIL, default admin@auroraskincare.example). Used once on first boot to create the account; change it from the admin dashboard or set your own value here. There is a clearly-labelled development placeholder in .env.base44-defaults.",
+      "requiredAtBoot": false
+    }
+  ]
+}

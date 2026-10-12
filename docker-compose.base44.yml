@@ -1,0 +1,49 @@
+# Base44 sandbox / development environment for AURORA SKINCARE.
+#
+# Runs the Express storefront + JSON API from the cloned source (bind-mounted),
+# with dependencies installed from the lockfile at container start, a SQLite
+# database on a named volume, and a live-reload channel so edits appear in the
+# preview without rebuilding an image.
+#
+# Usage: docker compose -f docker-compose.base44.yml up -d --build
+
+name: aurora-skincare
+
+services:
+  app:
+    # Plain runtime image — never the project's own build, so source edits apply live.
+    image: node:22-bookworm
+    working_dir: /app
+    restart: on-failure
+    command:
+      - sh
+      - -ec
+      - npm ci --omit=dev --no-audit --no-fund && exec node --watch server/server.js
+    # Later env_file entries win, so platform-managed secrets override the
+    # placeholder defaults in the repo.
+    env_file:
+      - ./.env.base44-defaults
+      - /run/base44/app.env
+    environment:
+      # Bare passthrough of the platform preview flag (never hardcoded to 1).
+      - BASE44_PREVIEW_MODE
+    ports:
+      # The user-facing entry point must be reachable on host port 3000.
+      - "3000:3000"
+    volumes:
+      - ./:/app
+      - aurora_node_modules:/app/node_modules
+      - aurora_data:/app/data
+    healthcheck:
+      # Probes real application responsiveness through the API, not just a port.
+      test:
+        - CMD-SHELL
+        - node -e "fetch('http://127.0.0.1:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 15s
+      timeout: 5s
+      retries: 6
+      start_period: 60s
+
+volumes:
+  aurora_node_modules:
+  aurora_data:
