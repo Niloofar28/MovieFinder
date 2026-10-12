@@ -534,7 +534,7 @@ function headerHtml(categories, active, user) {
     <a class="brand" href="/" aria-label="Aurora Skincare home">
       ${logoMark}
       <span class="brand-text">
-        <span class="brand-name">AURORA SKINCARE</span>
+        <span class="brand-name">AURORA<span class="brand-tail"> SKINCARE</span></span>
         <span class="brand-sub">Skincare</span>
       </span>
     </a>
@@ -666,6 +666,10 @@ export async function mountShell(activePath = location.pathname) {
   const footer = document.getElementById('site-footer');
   header.innerHTML = headerHtml(categoryList, activePath, session.user);
   footer.innerHTML = footerHtml(content, categoryList);
+
+  // The off-canvas menu is a fixed overlay: keep it out of the sticky header so
+  // it is positioned against the viewport rather than the header box.
+  document.body.append(document.getElementById('mobile-nav'));
 
   const extras = document.createElement('div');
   extras.innerHTML = shellExtrasHtml(content);

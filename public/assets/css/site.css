@@ -373,7 +373,9 @@
   align-items: center;
   gap: var(--s-3);
   min-height: var(--header-h);
-  padding: 0.6rem 0;
+  /* Only the vertical rhythm is set here — the side padding comes from .container
+     so the header aligns with every other section. */
+  padding-block: 0.6rem;
 }
 
 .brand {
@@ -2495,6 +2497,15 @@ tbody tr:last-child td {
   .burger {
     display: inline-flex;
   }
+  /* With the desktop nav hidden the header carries two tracks — brand and
+     actions — so pin the action cluster to the trailing edge. */
+  .header-inner {
+    grid-template-columns: auto 1fr;
+  }
+  .header-actions {
+    justify-content: flex-end;
+    min-width: 0;
+  }
   .hero__inner {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
@@ -2608,6 +2619,35 @@ tbody tr:last-child td {
   }
 }
 
+/* Small screens: the five header controls and the wordmark share one row, so
+   tighten the controls and use the short wordmark. */
+@media (max-width: 640px) {
+  .header-inner {
+    gap: var(--s-1);
+  }
+  .header-actions {
+    gap: 0;
+  }
+  .header-actions .icon-btn {
+    width: 38px;
+    height: 38px;
+  }
+  .header-actions .icon-btn svg {
+    width: 19px;
+    height: 19px;
+  }
+  .header-inner .brand {
+    gap: 0.5rem;
+  }
+  .header-inner .brand-mark {
+    width: 34px;
+    height: 34px;
+  }
+  .header-inner .brand-tail {
+    display: none;
+  }
+}
+
 @media (max-width: 480px) {
   .brand-sub {
     display: none;
@@ -2626,6 +2666,23 @@ tbody tr:last-child td {
   }
   .footer-top {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Narrow phones: shrink the controls and the wordmark a little further so the
+   header row still fits on one line without horizontal overflow. */
+@media (max-width: 430px) {
+  .header-actions .icon-btn {
+    width: 36px;
+    height: 36px;
+  }
+  .header-actions .icon-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+  .header-inner .brand-name {
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
   }
 }
 
