@@ -27,6 +27,9 @@ setPageMeta({
   path: '/wishlist',
 });
 
+/* The products currently on screen, refreshed by every render(). */
+let currentItems = [];
+
 async function render() {
   const slugs = wishlist.slugs();
   if (!slugs.length) {
@@ -46,6 +49,7 @@ async function render() {
   const items = slugs
     .map((slug) => data.items.find((item) => item.slug === slug))
     .filter(Boolean);
+  currentItems = items;
 
   root.innerHTML = `
   <div class="container section" style="padding-top:1rem">
@@ -76,35 +80,39 @@ async function render() {
       <button class="btn btn--ghost btn--sm" type="button" data-remove="${item.slug}">Remove</button>`;
     body.appendChild(actions);
   });
-
-  root.addEventListener('click', async (event) => {
-    const add = event.target.closest('[data-add]');
-    const remove = event.target.closest('[data-remove]');
-    const moveAll = event.target.closest('[data-move-all]');
-    const clear = event.target.closest('[data-clear-wishlist]');
-
-    if (add) {
-      const item = items.find((i) => i.slug === add.dataset.add);
-      cart.add(item, { variant: item.variants?.[0]?.label || '', quantity: 1 });
-      toast(`${item.name} moved to your bag.`);
-      openCart();
-    } else if (remove) {
-      wishlist.remove(remove.dataset.remove);
-      toast('Removed from your wishlist.');
-      render();
-    } else if (moveAll) {
-      items
-        .filter((item) => item.inStock)
-        .forEach((item) => cart.add(item, { variant: item.variants?.[0]?.label || '', quantity: 1 }));
-      toast('Available items moved to your bag.');
-      openCart();
-    } else if (clear) {
-      slugs.forEach((slug) => wishlist.remove(slug));
-      toast('Wishlist cleared.');
-      render();
-    }
-  });
 }
+
+/* The wishlist re-renders in place, so this delegated listener is attached once
+   for the life of the page and reads the live list from currentItems. Binding it
+   inside render() stacked a new copy on every update, so one click ran several
+   times. */
+root.addEventListener('click', async (event) => {
+  const add = event.target.closest('[data-add]');
+  const remove = event.target.closest('[data-remove]');
+  const moveAll = event.target.closest('[data-move-all]');
+  const clear = event.target.closest('[data-clear-wishlist]');
+
+  if (add) {
+    const item = currentItems.find((i) => i.slug === add.dataset.add);
+    cart.add(item, { variant: item.variants?.[0]?.label || '', quantity: 1 });
+    toast(`${item.name} moved to your bag.`);
+    openCart();
+  } else if (remove) {
+    wishlist.remove(remove.dataset.remove);
+    toast('Removed from your wishlist.');
+    render();
+  } else if (moveAll) {
+    currentItems
+      .filter((item) => item.inStock)
+      .forEach((item) => cart.add(item, { variant: item.variants?.[0]?.label || '', quantity: 1 }));
+    toast('Available items moved to your bag.');
+    openCart();
+  } else if (clear) {
+    currentItems.forEach((item) => wishlist.remove(item.slug));
+    toast('Wishlist cleared.');
+    render();
+  }
+});
 
 await render();
 
@@ -113,6 +121,6 @@ const recent = await recentlyViewed.products().catch(() => []);
 if (recent.length) {
   recentSection.hidden = false;
   document.getElementById('recently-viewed-grid').innerHTML = recent
-    .map((item) => productCard(item, { quickAdd: false }))
+    .map((product) => productCard(product, { quickAdd: false }))
     .join('');
 }

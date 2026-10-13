@@ -127,7 +127,6 @@ function render() {
     </div>
   </div>`;
 
-  bind();
 }
 
 function bind() {
@@ -188,6 +187,11 @@ function bind() {
     }
   });
 }
+
+/* The bag re-renders in place (root.innerHTML), so the delegated listeners are
+   attached once here. Binding them inside render() stacked a new set on every
+   update, which made a single click run several times. */
+bind();
 
 render();
 

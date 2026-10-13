@@ -24,6 +24,11 @@ container start; SQLite lives on the `aurora_data` volume.
 - The header is sticky and gains `backdrop-filter` when scrolled, which makes it a containing block
   for `position: fixed` descendants. Overlays (cart drawer, search panel, off-canvas menu) are
   therefore mounted on `document.body`, never inside the header.
+- **A page that re-renders with `root.innerHTML` must attach its delegated listeners once.** `cart.js`
+  and `wishlist.js` now bind a single delegated listener on their persistent root at module level;
+  binding it inside `render()` stacked a new listener on every update, so one click ran several times
+  (the bag's quantity stepper jumped 1 → 3, the promo form posted repeatedly and duplicate toasts
+  piled up). `wishlist.js` keeps the on-screen products in a module-level `currentItems`.
 - Bootstrap administrator comes from the env: `ADMIN_EMAIL` / `ADMIN_PASSWORD` (dev default
   `admin@auroraskincare.example` / `aurora-admin-demo` in `.env.base44-defaults`). Admin UI at
   `/admin`; every `/api/admin/*` route re-checks the role server-side, so the page shows its login
